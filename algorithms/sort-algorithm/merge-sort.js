@@ -1,26 +1,26 @@
 /**
- * learning mergesort not yet finished 
+ * divide and conquer = beast lol
  */
 
-function mergeSort(arr1,arr2){
+function merge(arr1, arr2) {
+  let sorted = [];
 
-    let leftCounter = 0;
-    let rightCounter = 0;
+  while (arr1.length && arr2.length) {
+    if (arr1[0] < arr2[0]) sorted.push(arr1.shift());
+    else sorted.push(arr2.shift());
+  }
 
-    const mergeSortArray = [];
-    while(leftCounter < arr1.length || rightCounter < arr2.length){
-        if(arr1[leftCounter] < arr2[rightCounter]){
-            mergeSortArray.push(arr1[leftCounter]);
-            leftCounter++;
-        }else{
-            mergeSortArray.push(arr2[rightCounter]);
-            rightCounter++;
-        }
-    }
-
-    return mergeSortArray;
-
+  return sorted.concat(arr1.concat(arr2));
 }
 
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-console.log(mergeSort([1,10,49,50], [2,14,99,1000,30000]))
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+console.log(mergeSort([9, 2, 3, 1, 2]));
