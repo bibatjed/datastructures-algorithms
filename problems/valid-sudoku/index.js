@@ -6,8 +6,8 @@ const isValidSudoku = function (board) {
       const cell = board[i][j];
       if (cell === ".") continue;
       const boxNum = 3 * Math.floor(i / 3) + Math.floor(j / 3);
-      let col = `col: ${i}, value: ${cell}`;
-      let row = `row: ${j}, value: ${cell}`;
+      let row = `row: ${i}, value: ${cell}`;
+      let col = `col: ${j}, value: ${cell}`;
       let boxNums = `boxNum: ${boxNum}, value: ${cell}`;
       if (set.has(row) || set.has(col) || set.has(boxNums)) return false;
       set.add(row);
